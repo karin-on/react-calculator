@@ -1,0 +1,13 @@
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(85px, 1fr));
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    'digit-7 digit-8 digit-9 plus'
+    'digit-4 digit-5 digit-6 minus'
+    'digit-1 digit-2 digit-3 equals'
+    'allClear digit-0 separator equals';
+  grid-gap: 20px;
+  padding: 30px;
+  background: aliceblue;
+}

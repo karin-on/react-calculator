@@ -1,9 +1,8 @@
-import './App.scss';
+import { Container } from './components/Container';
+import { Calculator } from './components/Calculator';
 
-export const App = () => {
-  return (
-    <div className="App">
-
-    </div>
-  );
-};
+export const App = () => (
+  <Container>
+    <Calculator/>
+  </Container>
+);

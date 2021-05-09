@@ -1,0 +1,39 @@
+.key {
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 40px;
+}
+
+@mixin digit($index) {
+  grid-area: digit-#{$index};
+}
+
+@for $index from 0 through 9 {
+  .digitKey-#{$index} {
+    @include digit($index);
+  }
+}
+
+.clearKey {
+  grid-area: allClear;
+}
+
+.plusKey {
+  grid-area: plus;
+}
+
+.minusKey {
+  grid-area: minus;
+}
+
+.equalsKey {
+  grid-area: equals;
+}
+
+.separatorKey {
+  grid-area: separator;
+}
