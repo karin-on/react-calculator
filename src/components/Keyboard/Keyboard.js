@@ -7,7 +7,7 @@ export const Keyboard = () => {
   });
 
   return (
-    <div className={classes.keyboard}>
+    <div data-testid="keyboard" className={classes.keyboard}>
       {digitKeys}
       <Key additionalCssClass={'clearKey'} value="AC" />
       <Key additionalCssClass={'plusKey'} value="+" />
