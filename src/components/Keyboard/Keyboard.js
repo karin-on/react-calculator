@@ -1,19 +1,18 @@
 import classes from './Keyboard.module.scss';
 import { Key } from '../Key';
+import { KEYS } from '../../static/keys';
+import { generateID } from '../../helpers/generate-id';
 
 export const Keyboard = () => {
-  const digitKeys = [...Array(10).keys()].map((index) => {
-    return <Key additionalCssClass={`digitKey-${index}`} value={index} />;
+  const keys = KEYS.map(({ value, cssClass, role }) => {
+    return (
+      <Key key={generateID()} additionalCssClass={cssClass} value={value} />
+    );
   });
 
   return (
     <div data-testid="keyboard" className={classes.keyboard}>
-      {digitKeys}
-      <Key additionalCssClass={'clearKey'} value="AC" />
-      <Key additionalCssClass={'plusKey'} value="+" />
-      <Key additionalCssClass={'minusKey'} value="-" />
-      <Key additionalCssClass={'equalsKey'} value="=" />
-      <Key additionalCssClass={'separatorKey'} value="." />
+      {keys}
     </div>
   )
 };
