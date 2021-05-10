@@ -6,3 +6,12 @@ export const App = () => (
     <Calculator/>
   </Container>
 );
+
+
+// console.log('test');
+//
+// const arr = [1, 2, 5];
+// const total = arr.reduce((a, b) => {
+//   return a + b;
+// }, 0);
+// console.log(total);

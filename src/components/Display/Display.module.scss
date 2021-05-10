@@ -1,6 +1,8 @@
+@import '../../styles/colors';
+
 .display {
-  padding: 30px;
-  background: #cbe1ef;
-  font-size: 50px;
+  padding: 3rem;
+  background: $color-link-water;
+  font-size: 5rem;
   text-align: right;
 }
