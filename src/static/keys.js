@@ -1,42 +1,39 @@
-const keyRoles = {
+export const keyRoles = {
+  ADD: 'ADD',
+  CLEAR: 'CLEAR',
   DIGIT: 'DIGIT',
-  OPERATOR: 'OPERATOR',
+  EQUALS: 'EQUALS',
   SEPARATOR: 'SEPARATOR',
+  SUBTRACT: 'SUBTRACT',
 };
 
 const DIGIT_KEYS = [...Array(10).keys()].map(value => {
   return {
+    role: keyRoles.DIGIT,
     value,
-    cssClass: `digitKey-${value}`,
-    role: keyRoles.DIGIT, // TODO: czy potrzebne?
   }
 });
 
 export const KEYS = [
   ...DIGIT_KEYS,
   {
-    value: 'AC',
-    cssClass: 'digitKey',
-    role: keyRoles.OPERATOR,
-  },
-  {
+    role: keyRoles.ADD,
     value: '+',
-    cssClass: 'plusKey',
-    role: keyRoles.OPERATOR,
   },
   {
-    value: '-',
-    cssClass: 'minusKey',
-    role: keyRoles.OPERATOR,
+    role: keyRoles.CLEAR,
+    value: 'AC',
   },
   {
+    role: keyRoles.EQUALS,
     value: '=',
-    cssClass: 'equalsKey',
-    role: keyRoles.OPERATOR,
   },
   {
-    value: '.',
-    cssClass: 'separatorKey',
     role: keyRoles.SEPARATOR,
+    value: '.',
+  },
+  {
+    role: keyRoles.SUBTRACT,
+    value: '-',
   }
 ];
