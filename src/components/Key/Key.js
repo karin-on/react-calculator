@@ -4,7 +4,7 @@ import classes from './Key.module.scss';
 import * as actions from '../../store/actions/actions';
 import { keyRoles } from '../../static/keys';
 
-export const Key = ({ role, value, additionalCssClass }) => {
+export const Key = ({ role, value }) => {
   const dispatch = useDispatch();
 
   const handleKeySelection = () => {
@@ -37,7 +37,7 @@ export const Key = ({ role, value, additionalCssClass }) => {
       data-testid="key"
       className={classNames([
         classes.key,
-        classes[additionalCssClass]
+        {[`${classes.equalsKey}`]: role === keyRoles.EQUALS }
       ])}
       onClick={handleKeySelection}
     >
