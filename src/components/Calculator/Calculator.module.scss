@@ -1,4 +1,11 @@
 .calculator {
+  width: 100%;
+  max-width: 320px;
   border-radius: 1.2rem;
   overflow: hidden;
+
+  @media (min-width: 1000px) {
+    width: auto;
+    max-width: unset;
+  }
 }
