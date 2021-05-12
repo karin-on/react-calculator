@@ -258,6 +258,27 @@ describe('short operations:', () => {
     userEvent.click(equalsKey);
     expect(display).toHaveTextContent(/^1\.2$/);
   });
+  test('- subtracting decimals: 0.5 - 0.00001 = 0.49999', () => {
+    render(<Calculator/>);
+    const display = screen.getByTestId('display');
+    const digitKey0 = screen.getByRole('button', { name: /0/ });
+    const digitKey1 = screen.getByRole('button', { name: /1/ });
+    const digitKey5 = screen.getByRole('button', { name: /5/ });
+    const separatorKey = screen.getByRole('button', { name: /\./ });
+    const subtractKey = screen.getByRole('button', { name: /\-/ });
+    const equalsKey = screen.getByRole('button', { name: /\=/ });
+    userEvent.click(separatorKey);
+    userEvent.click(digitKey5);
+    userEvent.click(subtractKey);
+    userEvent.click(separatorKey);
+    userEvent.click(digitKey0);
+    userEvent.click(digitKey0);
+    userEvent.click(digitKey0);
+    userEvent.click(digitKey0);
+    userEvent.click(digitKey1);
+    userEvent.click(equalsKey);
+    expect(display).toHaveTextContent(/^0\.49999$/);
+  });
 });
 
 describe('sequential operations:', () => {

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import classes from './Key.module.scss';
 import * as actions from '../../store/actions/actions';
-import { keyRoles } from '../../static/keys';
+import { keyRoles } from '../../static';
 
 export const Key = ({ role, value }) => {
   const dispatch = useDispatch();

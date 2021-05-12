@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { getTotal } from '../../helpers/get-total';
+import { getTotal } from '../../helpers';
 import { operationTypes } from '../../static/operation-types';
 
 const initialState = {

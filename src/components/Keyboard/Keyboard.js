@@ -1,7 +1,7 @@
 import classes from './Keyboard.module.scss';
 import { Key } from '../Key';
-import { KEYS } from '../../static/keys';
-import { generateID } from '../../helpers/generate-id';
+import { KEYS } from '../../static';
+import { generateID } from '../../helpers';
 
 export const Keyboard = () => {
   const keys = KEYS.map(({ value, role }) => {
