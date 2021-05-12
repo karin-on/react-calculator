@@ -4,11 +4,6 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(8.5rem, 1fr));
   grid-template-rows: repeat(4, 1fr);
-  grid-template-areas:
-    'digit-7 digit-8 digit-9 add'
-    'digit-4 digit-5 digit-6 subtract'
-    'digit-1 digit-2 digit-3 equals'
-    'clear digit-0 separator equals';
   grid-gap: 2rem;
   padding: 3rem;
   background: $color-aliceblue;

@@ -19,28 +19,6 @@
   }
 }
 
-@for $index from 0 through 9 {
-  .digitKey-#{$index} {
-    @include digit($index);
-  }
-}
-
-.addKey {
-  grid-area: add;
-}
-
-.clearKey {
-  grid-area: clear;
-}
-
 .equalsKey {
-  grid-area: equals;
-}
-
-.separatorKey {
-  grid-area: separator;
-}
-
-.subtractKey {
-  grid-area: subtract;
+  grid-row: span 2;
 }

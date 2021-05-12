@@ -1,4 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
+import { getTotal } from '../../helpers';
+import { operationTypes } from '../../static/operation-types';
 
 const initialState = {
   displayedText: '0',
@@ -6,28 +8,18 @@ const initialState = {
   secondValProvided: false,
   operation: undefined,
   typing: false,
-};
-
-const operationTypes = {
-  add: 'add',
-  subtract: 'subtract',
-};
-
-const operations = {
-  add: (a, b) => a + b,
-  subtract: (a, b) => a - b,
+  decimal: false,
 };
 
 export const reducer = (state = initialState, action) => {
-  const { displayedText, firstVal, secondValProvided, operation, typing } = state;
+  const { displayedText, total, secondValProvided, operation, typing, decimal } = state;
   const { type, value } = action;
 
   switch (type) {
     case actionTypes.SELECT_VALUE:
-      // TODO: refactor
       let concatenatedValue;
       let newTyping;
-      if (displayedText === '0' && value === 0) {
+      if (displayedText === '0' && value === '0') {
         concatenatedValue = '0';
         newTyping = false;
       } else {
@@ -38,72 +30,84 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         typing: newTyping,
-        displayedText: typing ? concatenatedValue : `${value}`,
+        displayedText: typing ? concatenatedValue : value,
         secondValProvided: !!operation,
       };
+
+    case actionTypes.SEPARATE:
+      if (decimal) {
+        return state;
+      }
+      return {
+        ...state,
+        typing: true,
+        decimal: true,
+        displayedText: typing ? `${displayedText}.` : '0.',
+      }
+
     case actionTypes.ADD:
       if (secondValProvided) {
-        const newTotal = [firstVal, parseFloat(displayedText)]
-          .reduce((a, b) => operations[operation](a, b));
+        const newTotal = getTotal(total, displayedText, operation).toString();
 
         return {
           ...state,
           typing: false,
-          firstVal: newTotal, // total
+          total: newTotal,
           secondValProvided: false,
           displayedText: newTotal,
           operation: operationTypes.add,
+          decimal: false,
         };
       }
-
       return {
         ...state,
         typing: false,
-        firstVal: parseFloat(displayedText),
+        total: displayedText,
         operation: operationTypes.add,
+        decimal: false,
       };
 
     case actionTypes.SUBTRACT:
       if (secondValProvided) {
-        const newTotal = [firstVal, parseFloat(displayedText)]
-          .reduce((a, b) => operations[operation](a, b));
+        const newTotal = getTotal(total, displayedText, operation).toString();
 
         return {
           ...state,
           typing: false,
-          firstVal: newTotal, // total
+          total: newTotal,
           secondValProvided: false,
           displayedText: newTotal,
           operation: operationTypes.subtract,
+          decimal: false,
         };
       }
-
       return {
         ...state,
         typing: false,
-        firstVal: parseFloat(displayedText),
+        total: displayedText,
         operation: operationTypes.subtract,
+        decimal: false,
       };
 
     case actionTypes.EQUALS:
       if (!secondValProvided) {
-        return;
+        return state;
       }
 
-      const newTotal = [firstVal, parseFloat(displayedText)]
-        .reduce((a, b) => operations[operation](a, b));
-
+      const newTotal = getTotal(total, displayedText, operation).toString();
       return {
         ...state,
         typing: false,
-        firstVal: newTotal, // total
+        total: newTotal,
         secondValProvided: false,
         displayedText: newTotal,
         operation: undefined,
+        decimal: false,
       };
 
     case actionTypes.CLEAR:
       return initialState;
+
     default:
       return state;
   }
